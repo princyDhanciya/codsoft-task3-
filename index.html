@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girly Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1;
+        }
+        .calculator {
+            background-color: #ffcccb;
+            padding: 20px;
+            border-radius: 25px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        .display {
+            width: 100%;
+            height: 60px;
+            background-color: #fff0f5;
+            border-radius: 10px;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: right;
+            padding: 15px;
+            font-size: 24px;
+            color: #ff69b4;
+            border: none;
+            margin-bottom: 20px;
+        }
+        .button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #ffb6c1;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff69b4;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .button:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .button.zero {
+            width: 150px;
+        }
+        .button.equals {
+            background-color: #ff69b4;
+        }
+        .button.equals:hover {
+            background-color: #ff1493;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" class="display" disabled>
+    <div class="button-row">
+        <button class="button" onclick="clearDisplay()">C</button>
+        <button class="button" onclick="appendToDisplay('/')">÷</button>
+        <button class="button" onclick="appendToDisplay('*')">×</button>
+        <button class="button" onclick="deleteLast()">←</button>
+    </div>
+    <div class="button-row">
+        <button class="button" onclick="appendToDisplay('7')">7</button>
+        <button class="button" onclick="appendToDisplay('8')">8</button>
+        <button class="button" onclick="appendToDisplay('9')">9</button>
+        <button class="button" onclick="appendToDisplay('-')">−</button>
+    </div>
+    <div class="button-row">
+        <button class="button" onclick="appendToDisplay('4')">4</button>
+        <button class="button" onclick="appendToDisplay('5')">5</button>
+        <button class="button" onclick="appendToDisplay('6')">6</button>
+        <button class="button" onclick="appendToDisplay('+')">+</button>
+    </div>
+    <div class="button-row">
+        <button class="button" onclick="appendToDisplay('1')">1</button>
+        <button class="button" onclick="appendToDisplay('2')">2</button>
+        <button class="button" onclick="appendToDisplay('3')">3</button>
+        <button class="button equals" onclick="calculate()">=</button>
+    </div>
+    <div class="button-row">
+        <button class="button zero" onclick="appendToDisplay('0')">0</button>
+        <button class="button" onclick="appendToDisplay('.')">.</button>
+    </div>
+</div>
+
+<script>
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function deleteLast() {
+        let currentDisplay = document.getElementById('display').value;
+        document.getElementById('display').value = currentDisplay.slice(0, -1);
+    }
+
+    function calculate() {
+        let result = eval(document.getElementById('display').value);
+        document.getElementById('display').value = result;
+    }
+</script>
+
+</body>
+</html>
+
